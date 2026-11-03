@@ -5,6 +5,7 @@ results: accepting an Iterable does NOT make whole-data analysis safe on infinit
 """
 from collections import defaultdict
 from collections.abc import Iterable
+from datetime import datetime
 from statistics import fmean, median, stdev
 
 
@@ -34,7 +35,25 @@ def explore_data(readings: list[dict]) -> dict:
     Use actual times, not row positions; input records need not be time-sorted.
     """
     # Count each (room, sensor_id, metric) separately. Do not calculate a mixed-unit mean.
-    raise NotImplementedError("E1: implement data exploration in analysis.py")
+    counts = defaultdict(int)
+    units = {}
+    for reading in readings:
+        key = (reading["room"], reading["sensor_id"], reading["metric"])
+        counts[key] += 1
+        units.setdefault(key, reading["unit"])
+    times = [(datetime.fromisoformat(r["time"]), r["time"]) for r in readings]
+    return {
+        "record_count": len(readings),
+        "rooms": sorted({r["room"] for r in readings}),
+        "sensor_ids": sorted({r["sensor_id"] for r in readings}),
+        "metrics": sorted({r["metric"] for r in readings}),
+        "time_start": min(times)[1] if times else None,
+        "time_end": max(times)[1] if times else None,
+        "series": [{"room": room, "sensor_id": sensor_id, "metric": metric,
+                    "unit": units[(room, sensor_id, metric)],
+                    "count": counts[(room, sensor_id, metric)]}
+                   for room, sensor_id, metric in sorted(counts)]
+    }
 
 
 def extended_summary(values: list[float]) -> dict:
