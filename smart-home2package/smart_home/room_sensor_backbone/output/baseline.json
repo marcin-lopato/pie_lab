@@ -1,0 +1,40 @@
+{
+  "calibration_applied": false,
+  "series": {
+    "room": "laboratory",
+    "sensor_id": "station-01",
+    "metric": "temperature"
+  },
+  "readings": [
+    {
+      "time": "2026-10-01T12:00:00+00:00",
+      "room": "laboratory",
+      "sensor_id": "station-01",
+      "metric": "temperature",
+      "unit": "C",
+      "value": 20.0
+    },
+    {
+      "time": "2026-10-01T12:01:00+00:00",
+      "room": "laboratory",
+      "sensor_id": "station-01",
+      "metric": "temperature",
+      "unit": "C",
+      "value": 21.0
+    },
+    {
+      "time": "2026-10-01T12:02:00+00:00",
+      "room": "laboratory",
+      "sensor_id": "station-01",
+      "metric": "temperature",
+      "unit": "C",
+      "value": 22.0
+    }
+  ],
+  "summary": {
+    "count": 3,
+    "mean": 21.0,
+    "minimum": 20.0,
+    "maximum": 22.0
+  }
+}
