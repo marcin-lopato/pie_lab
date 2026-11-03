@@ -3,8 +3,9 @@
 An Iterable can be a list or an iterator. These functions still produce finite
 results: accepting an Iterable does NOT make whole-data analysis safe on infinity.
 """
+from collections import defaultdict
 from collections.abc import Iterable
-from statistics import fmean
+from statistics import fmean, median, stdev
 
 
 def select_series(readings: Iterable[dict], room: str, sensor_id: str,
@@ -43,7 +44,10 @@ def extended_summary(values: list[float]) -> dict:
     median is also None. Reuse basic_summary instead of rewriting its fields.
     """
     # The statistics module supplies median and stdev; decide when they are defined.
-    raise NotImplementedError("S1: implement the extended summary in analysis.py")
+    ext = basic_summary(values)
+    ext["median"] = median(values) if values else None
+    ext["sample_sd"] = stdev(values) if len(values) >= 2 else None
+    return ext
 
 
 def summarise_by_series(readings: list[dict]) -> list[dict]:
@@ -54,4 +58,18 @@ def summarise_by_series(readings: list[dict]) -> list[dict]:
     Sort the output by room/sensor_id/metric. Empty input returns [].
     """
     # Group by the complete three-part key, then analyse each group separately.
-    raise NotImplementedError("S2: implement grouped summaries in analysis.py")
+    groups = defaultdict(list)
+    for reading in readings:
+        key = (reading["room"], reading["sensor_id"], reading["metric"])
+        groups[key].append(reading)
+    result = []
+    for room, sensor_id, metric in sorted(groups):
+        records = groups[(room, sensor_id, metric)]
+        result.append({
+            "room": room,
+            "sensor_id": sensor_id,
+            "metric": metric,
+            "unit": records[0]["unit"],
+            "summary": extended_summary([record["value"] for record in records])
+        })
+    return result
