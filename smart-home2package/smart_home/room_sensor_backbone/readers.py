@@ -4,6 +4,7 @@ The CSV reader is your worked example. You implement JSON and JSON Lines.
 Readers must not calibrate measurements or calculate statistics.
 """
 import csv
+import json
 from pathlib import Path
 
 from records import FIELDS, parse_record
@@ -36,7 +37,23 @@ def read_json(path: Path) -> list[dict]:
     """
     # Start with `with Path(path).open(encoding="utf-8") as stream:`.
     # Use json.load(stream), check the container, then transform each object.
-    raise NotImplementedError("R1: implement the JSON reader in readers.py")
+    path = Path(path)
+    with path.open(encoding="utf-8") as stream:
+        try:
+            data = json.load(stream)
+        except json.JSONDecodeError as error:
+            raise ValueError(f"{path}: Invalid JSON content: {error}") from error
+
+    if not isinstance(data, list):
+        raise ValueError(f"{path}: JSON root must be a list/array.")
+
+    records = []
+    for index, item in enumerate(data):
+        try:
+            records.append(parse_record(item))
+        except ValueError as error:
+            raise ValueError(f"{path}: Invalid record at index {index}: {error}") from error
+    return records
 
 
 def read_jsonl(path: Path) -> list[dict]:
@@ -46,7 +63,19 @@ def read_jsonl(path: Path) -> list[dict]:
     error. This first version returns a finite list; streaming is a later task.
     """
     # Open the file with `with`, enumerate lines from 1, and skip empty lines.
-    raise NotImplementedError("R2: implement the JSON Lines reader in readers.py")
+    records = []
+    path = Path(path)
+    with path.open(encoding="utf-8") as stream:
+        for line_num, line in enumerate(stream, start=1):
+            line_str = line.strip()
+            if not line_str:
+                continue
+            try:
+                row = json.loads(line_str)
+                records.append(parse_record(row))
+            except (json.JSONDecodeError, ValueError) as error:
+                raise ValueError(f"{path}: JSON Lines line {line_num}: {error}") from error
+    return records
 
 
 def read_data(path: Path, file_format: str) -> list[dict]:
