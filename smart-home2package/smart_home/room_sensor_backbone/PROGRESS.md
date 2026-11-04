@@ -7,12 +7,12 @@ just because its name exists. Keep your notes short and specific.
 
 | Task | Your status | Example you ran / result you observed |
 |---|---|---|
-| R1: JSON reader | Not started | |
-| R2: JSON Lines reader | Not started | |
-| E1: Exploration | Not started | |
+| R1: JSON reader | Finished | |
+| R2: JSON Lines reader | Finished | |
+| E1: Exploration | Finished | test_E1_inventory / ok |
 | C1: Record calibration | Not started | |
-| S1: Extended statistics | Not started | |
-| S2: Per-series statistics | Not started | |
+| S1: Extended statistics | Finished | test_S1_statistics_and_small_samples / ok |
+| S2: Per-series statistics | Finished | test_S2_grouped_statistics / ok |
 | W1: CSV storage | Not started | |
 | W2: JSON Lines storage | Not started | |
 | L1: File logging | Not started | |
