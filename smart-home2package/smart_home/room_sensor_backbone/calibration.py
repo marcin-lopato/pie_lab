@@ -14,12 +14,8 @@ def calibrate_value(value: float, scale: float = 1.0, offset: float = 0.0) -> fl
         raise ValueError("Calibration produced a non-finite value.")
     return result
 
-
 def calibrate_reading(reading: dict, scale: float, offset: float) -> dict:
-    """YOUR TASK C1: return a new record with only its value changed.
-
-    Call calibrate_value. Keep time, room, sensor_id, metric, and unit unchanged.
-    The original dictionary must remain untouched; never calibrate it in place.
-    """
-    # Copy the record, calculate the new value, and return your copy.
-    raise NotImplementedError("C1: implement record calibration in calibration.py")
+    """Apply calibration to a reading dictionary, returning a new dictionary."""
+    calibrated = reading.copy()
+    calibrated["value"] = calibrate_value(reading["value"], scale, offset)
+    return calibrated
