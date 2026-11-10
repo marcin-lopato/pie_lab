@@ -1,0 +1,14 @@
+INFO | __main__ | Loaded configuration: /Users/filipsobieraj/Documents/sem5/Python/labnov10/room_sensor_generators/room_sensor_generators/config/example.json
+INFO | file_workflow | Reading csv input: /Users/filipsobieraj/Documents/sem5/Python/labnov10/room_sensor_generators/room_sensor_generators/data/readings.csv
+INFO | file_workflow | Read 36 raw records in 6 distinct series
+INFO | file_workflow | Selected 6 records for {'room': 'laboratory', 'sensor_id': 'station-01', 'metric': 'temperature'}
+INFO | file_workflow | Calibration enabled: scale=1.02, offset=-0.4
+INFO | file_workflow | Saved processed readings: /Users/filipsobieraj/Documents/sem5/Python/labnov10/room_sensor_generators/room_sensor_generators/output/calibrated.csv
+INFO | file_workflow | Saved summary and raw exploration: /Users/filipsobieraj/Documents/sem5/Python/labnov10/room_sensor_generators/room_sensor_generators/output/summary.json
+INFO | __main__ | Loaded configuration: /Users/filipsobieraj/Documents/sem5/Python/labnov10/room_sensor_generators/room_sensor_generators/config/files.json
+INFO | file_workflow | Reading csv input: /Users/filipsobieraj/Documents/sem5/Python/labnov10/room_sensor_generators/room_sensor_generators/data/readings.csv
+INFO | file_workflow | Read 36 raw records in 6 distinct series
+INFO | file_workflow | Selected 6 records for {'room': 'laboratory', 'sensor_id': 'station-01', 'metric': 'temperature'}
+INFO | file_workflow | Calibration enabled: scale=1.02, offset=-0.4
+INFO | file_workflow | Saved processed readings: /Users/filipsobieraj/Documents/sem5/Python/labnov10/room_sensor_generators/room_sensor_generators/output/calibrated.csv
+INFO | file_workflow | Saved summary and raw exploration: /Users/filipsobieraj/Documents/sem5/Python/labnov10/room_sensor_generators/room_sensor_generators/output/summary.json

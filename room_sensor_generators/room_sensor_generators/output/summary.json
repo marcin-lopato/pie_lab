@@ -1,0 +1,174 @@
+{
+  "source": {
+    "path": "/Users/filipsobieraj/Documents/sem5/Python/labnov10/room_sensor_generators/room_sensor_generators/data/readings.csv",
+    "format": "csv"
+  },
+  "series": {
+    "room": "laboratory",
+    "sensor_id": "station-01",
+    "metric": "temperature",
+    "unit": "C"
+  },
+  "calibration_applied": true,
+  "calibration": {
+    "enabled": true,
+    "scale": 1.02,
+    "offset": -0.4
+  },
+  "summary": {
+    "count": 6,
+    "mean": 21.02,
+    "minimum": 20.0,
+    "maximum": 22.040000000000003,
+    "median": 21.020000000000003,
+    "sample_sd": 0.7632981069018853
+  },
+  "raw_exploration": {
+    "record_count": 36,
+    "rooms": [
+      "laboratory",
+      "office"
+    ],
+    "sensor_ids": [
+      "station-01",
+      "station-02"
+    ],
+    "metrics": [
+      "humidity",
+      "pressure",
+      "temperature"
+    ],
+    "time_start": "2026-10-01T12:00:00+00:00",
+    "time_end": "2026-10-01T12:05:00+00:00",
+    "series": [
+      {
+        "room": "laboratory",
+        "sensor_id": "station-01",
+        "metric": "humidity",
+        "unit": "%",
+        "count": 6
+      },
+      {
+        "room": "laboratory",
+        "sensor_id": "station-01",
+        "metric": "pressure",
+        "unit": "hPa",
+        "count": 6
+      },
+      {
+        "room": "laboratory",
+        "sensor_id": "station-01",
+        "metric": "temperature",
+        "unit": "C",
+        "count": 6
+      },
+      {
+        "room": "office",
+        "sensor_id": "station-02",
+        "metric": "humidity",
+        "unit": "%",
+        "count": 6
+      },
+      {
+        "room": "office",
+        "sensor_id": "station-02",
+        "metric": "pressure",
+        "unit": "hPa",
+        "count": 6
+      },
+      {
+        "room": "office",
+        "sensor_id": "station-02",
+        "metric": "temperature",
+        "unit": "C",
+        "count": 6
+      }
+    ]
+  },
+  "raw_series_summaries": [
+    {
+      "room": "laboratory",
+      "sensor_id": "station-01",
+      "metric": "humidity",
+      "unit": "%",
+      "summary": {
+        "count": 6,
+        "mean": 42.5,
+        "minimum": 40.0,
+        "maximum": 45.0,
+        "median": 42.5,
+        "sample_sd": 1.8708286933869707
+      }
+    },
+    {
+      "room": "laboratory",
+      "sensor_id": "station-01",
+      "metric": "pressure",
+      "unit": "hPa",
+      "summary": {
+        "count": 6,
+        "mean": 1010.5,
+        "minimum": 1010.0,
+        "maximum": 1011.0,
+        "median": 1010.5,
+        "sample_sd": 0.374165738677382
+      }
+    },
+    {
+      "room": "laboratory",
+      "sensor_id": "station-01",
+      "metric": "temperature",
+      "unit": "C",
+      "summary": {
+        "count": 6,
+        "mean": 21.0,
+        "minimum": 20.0,
+        "maximum": 22.0,
+        "median": 21.0,
+        "sample_sd": 0.7483314773547887
+      }
+    },
+    {
+      "room": "office",
+      "sensor_id": "station-02",
+      "metric": "humidity",
+      "unit": "%",
+      "summary": {
+        "count": 6,
+        "mean": 48.75,
+        "minimum": 47.5,
+        "maximum": 50.0,
+        "median": 48.75,
+        "sample_sd": 0.9354143466934853
+      }
+    },
+    {
+      "room": "office",
+      "sensor_id": "station-02",
+      "metric": "pressure",
+      "unit": "hPa",
+      "summary": {
+        "count": 6,
+        "mean": 1011.75,
+        "minimum": 1011.5,
+        "maximum": 1012.0,
+        "median": 1011.75,
+        "sample_sd": 0.18708286933868493
+      }
+    },
+    {
+      "room": "office",
+      "sensor_id": "station-02",
+      "metric": "temperature",
+      "unit": "C",
+      "summary": {
+        "count": 6,
+        "mean": 23.5,
+        "minimum": 23.0,
+        "maximum": 24.0,
+        "median": 23.5,
+        "sample_sd": 0.3741657386773945
+      }
+    }
+  ]
+}
