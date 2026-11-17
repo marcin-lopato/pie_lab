@@ -23,8 +23,18 @@ this generator to close its file. This is a replay reader, not a file-tail servi
     # Open the file with a with block inside this generator.
     # Skip blank lines; decode and parse one record at a time.
     # Report bad rows with filename/line number, then yield valid records.
-    raise NotImplementedError("G3: implement iter_jsonl in streaming.py.")
-    yield {}  # Unreachable marker: preserve generator behaviour until implemented.
+    # The file is opened only when the first record is requested and is closed
+    # when the generator is exhausted or explicitly closed.
+    with Path(path).open(encoding="utf-8") as stream:
+        for number, line in enumerate(stream, start=1):
+            if not line.strip():
+                continue 
+            try:
+                record = parse_record(json.loads(line))
+            except ValueError as error:
+
+                raise ValueError(f"{path}: JSON Lines line {number}: {error}") from error
+            yield record
 
 
 def select_calibrated(readings: Iterable[dict], selection: dict,
@@ -38,8 +48,14 @@ series' calibration coefficients to another metric or station.
     # Filter lazily using the complete room/sensor_id/metric identity.
     # For matching records, yield a calibrated new record or an unchanged copy.
     # Reuse calibrate_reading; never materialise the incoming iterable.
-    raise NotImplementedError("G4: implement select_calibrated in streaming.py.")
-    yield {}  # Unreachable marker: preserve generator behaviour until implemented.
+    wanted = (selection["room"], selection["sensor_id"], selection["metric"])
+    for reading in readings:
+        if (reading["room"], reading["sensor_id"], reading["metric"]) != wanted:
+            continue
+        if calibration["enabled"]:
+            yield calibrate_reading(reading, calibration["scale"], calibration["offset"])
+        else:
+            yield reading.copy()
 
 
 def rolling_windows(readings: Iterable[dict], size: int) -> Iterator[list[dict]]:
