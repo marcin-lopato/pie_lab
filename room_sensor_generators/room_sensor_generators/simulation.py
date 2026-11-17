@@ -19,12 +19,20 @@ def sensor_values(sensor: dict) -> Iterator[float]:
 Use a private Random instance, not random.seed(). Temperature is in C, humidity
 in percent, pressure in hPa. The clipping is a teaching model, not sensor physics.
 """
-    # TODO G1: your implementation begins here.
-    # Create your own random.Random using sensor["seed"].
-    # In an infinite loop, sample, check finiteness, apply the metric limits,
-    # and yield one float. Do not sleep or accumulate a list here.
-    raise NotImplementedError("G1: implement sensor_values in simulation.py.")
-    yield 0.0  # Unreachable marker: preserve generator behaviour until implemented.
+    rng = random.Random(sensor["seed"])
+    mean = sensor["mean"]
+    noise_std = sensor["noise_std"]
+    metric = sensor["metric"]
+
+    while True:
+        value = float(rng.gauss(mean, noise_std))
+        if not isfinite(value):
+            raise ValueError("Generated sensor value must be finite.")
+        if metric == "humidity":
+            value = min(100.0, max(0.0, value))
+        elif metric == "pressure":
+            value = max(0.0, value)
+        yield value
 
 
 def wait_until(deadline: float, clock: Callable = time.monotonic,
@@ -34,11 +42,10 @@ def wait_until(deadline: float, clock: Callable = time.monotonic,
 Recheck after sleeping. An OS can wake us late; a test sleeper can wake us early.
 Neither case should cause us to deliberately emit before the deadline.
 """
-    # TODO G2: your implementation begins here.
-    # Subtract clock() from deadline to find the remaining delay.
-    # While it is positive, call sleep(remaining), then check the clock again.
-    # Never busy-wait or request a negative sleep.
-    raise NotImplementedError("G2: implement wait_until in simulation.py.")
+    remaining = deadline - clock()
+    while remaining > 0:
+        sleep(remaining)
+        remaining = deadline - clock()
 
 
 def utc_now() -> datetime:
