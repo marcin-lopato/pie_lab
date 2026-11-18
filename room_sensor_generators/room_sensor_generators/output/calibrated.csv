@@ -1,0 +1,7 @@
+time,room,sensor_id,metric,value,unit
+2026-10-01T12:00:00+00:00,laboratory,station-01,temperature,20.0,C
+2026-10-01T12:01:00+00:00,laboratory,station-01,temperature,20.408,C
+2026-10-01T12:02:00+00:00,laboratory,station-01,temperature,20.816000000000003,C
+2026-10-01T12:03:00+00:00,laboratory,station-01,temperature,21.224,C
+2026-10-01T12:04:00+00:00,laboratory,station-01,temperature,21.632000000000005,C
+2026-10-01T12:05:00+00:00,laboratory,station-01,temperature,22.040000000000003,C
